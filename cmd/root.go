@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -12,12 +11,12 @@ var rootCmd = &cobra.Command{
 	Use:   "mytodo",
 	Short: "MyTodo is a simple todo list app in cli",
 	Run: func(cmd *cobra.Command, args []string) {
-		if val, _ := cmd.Flags().GetBool("verbose"); val {
-			log.Println("Verbose mode")
-		}
-
-		log.Println("Good Job")
+		cmd.Run(lsCmd, args)
 	},
+}
+
+func init() {
+	rootCmd.AddCommand(lsCmd)
 }
 
 func Execute() {
